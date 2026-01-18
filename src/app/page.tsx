@@ -324,9 +324,16 @@ export default function Home() {
         >
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
             <div className="space-y-6 sm:space-y-8">
-              <h2 className="text-3xl sm:text-4xl font-light">
-                Conecte-se comigo
-              </h2>
+              <div className="flex items-center gap-4">
+                <img
+                  src="/eu.png"
+                  alt="Guilherme Silva"
+                  className="size-20 border rounded-full"
+                />
+                <h2 className="text-2xl sm:text-4xl font-light">
+                  Conecte-se comigo
+                </h2>
+              </div>
 
               <div className="space-y-6">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
