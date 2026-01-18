@@ -135,3 +135,7 @@
     }
   }
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
