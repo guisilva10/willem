@@ -248,17 +248,17 @@ export default function Home() {
             <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
               {[
                 {
-                  title: "Kairos",
+                  title: "Next Hub Academy",
                   excerpt:
-                    "Plataforma de gestão de rotina, dieta, treinos e produtividade com inteligência artificial.",
+                    "Plataforma de ensino de tecnologia e educação, com o objetivo de formar novos profissionais.",
                   date: "2024 — Em andamento",
-                  stack: "Next.js, Prisma, Tailwind, OpenAI",
+                  stack: "Next.js, Prisma, Tailwind, NextAuth",
                 },
                 {
-                  title: "SYNC",
+                  title: "2VIBE",
                   excerpt:
-                    "Gerador de páginas de links para bio, inspirado em Beacons e Linktree.",
-                  date: "2023",
+                    "Plataforma de networking de projetos e profissionais com o objetivo de conectar recrutadores com desenvolvedores..",
+                  date: "2026",
                   stack: "Next.js, NextAuth, ShadCN UI",
                 },
                 {
@@ -272,7 +272,7 @@ export default function Home() {
                   title: "Magalee",
                   excerpt:
                     "IA nutricionista que ajuda a manter uma alimentação saudável e treinos consistentes, com dashboard interativo para usuários e painel completo para nutricionistas.",
-                  date: "2024",
+                  date: "2025",
                   stack: "N8N, Next.js 15, Google Sheets",
                 },
               ].map((post, index) => (
@@ -293,23 +293,6 @@ export default function Home() {
                     <p className="text-muted-foreground leading-relaxed">
                       {post.excerpt}
                     </p>
-
-                    {/* <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                      <span>Read more</span>
-                      <svg
-                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </div> */}
                   </div>
                 </article>
               ))}
@@ -414,7 +397,7 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
             <div className="space-y-2">
               <div className="text-sm text-muted-foreground">
-                © 2025 Guilherme Willem - Todos os direitos reservados
+                © 2026 Guilherme Willem - Todos os direitos reservados
               </div>
             </div>
 
