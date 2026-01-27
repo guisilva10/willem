@@ -69,7 +69,7 @@ export default function Home() {
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               <div className="space-y-3 sm:space-y-2">
                 <div className="text-sm text-muted-foreground font-mono tracking-wider">
-                  PORTFOLIO / 2025
+                  PORTFOLIO
                 </div>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
                   Guilherme
