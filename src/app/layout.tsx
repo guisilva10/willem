@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
 import SmoothScroll from "./_components/scroll-smooth";
+import { BackgroundCanvas } from "./_components/background-canvas";
 import { SITE_NAME } from "./_content/site";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://willembio.vercel.app";
@@ -53,6 +54,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <BackgroundCanvas />
           <SmoothScroll>{children}</SmoothScroll>
         </ThemeProvider>
       </body>
