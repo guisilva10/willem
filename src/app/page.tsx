@@ -1,16 +1,26 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { ArrowRight, ChevronDown } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { ProjectCard } from "@/app/_components/project-card";
+import { SectionNav } from "@/app/_components/section-nav";
+import { StatusPill } from "@/app/_components/status-pill";
+import { ThemeToggle } from "@/app/_components/theme-toggle";
+import { journey } from "@/app/_content/journey";
+import { projects } from "@/app/_content/projects";
+import { IS_AVAILABLE, SITE_EMAIL, SITE_NAME, STACK } from "@/app/_content/site";
+import { socials } from "@/app/_content/socials";
+
+const linkFocusRing =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(true);
   const [activeSection, setActiveSection] = useState("");
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [isDark]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,32 +42,9 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
-
   return (
-    <div className="min-h-screen bg-background text-foreground relative">
-      <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
-        <div className="flex flex-col gap-4">
-          {["intro", "work", "thoughts", "connect"].map((section) => (
-            <button
-              key={section}
-              onClick={() =>
-                document
-                  .getElementById(section)
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className={`w-2 h-8 rounded-full transition-all duration-500 ${
-                activeSection === section
-                  ? "bg-foreground"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
-              }`}
-              aria-label={`Navigate to ${section}`}
-            />
-          ))}
-        </div>
-      </nav>
+    <div className="min-h-screen text-foreground relative z-10">
+      <SectionNav activeSection={activeSection} />
 
       <main className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
         <header
@@ -65,78 +52,54 @@ export default function Home() {
           ref={(el) => {
             sectionsRef.current[0] = el;
           }}
-          className="min-h-screen flex items-center opacity-0"
+          className="min-h-screen flex flex-col items-center justify-center opacity-0"
         >
-          <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
+          <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 lg:gap-20 w-full">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
-              <div className="space-y-3 sm:space-y-2">
+              <div className="space-y-4 sm:space-y-3">
                 <div className="text-sm text-muted-foreground font-mono tracking-wider">
                   PORTFOLIO
                 </div>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
+                <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light tracking-tight leading-[0.95] text-balance">
                   Guilherme
                   <br />
                   <span className="text-muted-foreground">Willem</span>
                 </h1>
               </div>
 
-              <div className="space-y-6 max-w-md">
-                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  Sou um{" "}
-                  <span className="text-foreground">
-                    coordenador de tecnologia e educação
-                  </span>
-                  ,{" "}
-                  <span className="text-foreground">
-                    engenheiro de software
-                  </span>{" "}
-                  e atuo desenvolvendo projetos em uma{" "}
-                  <span className="text-foreground">startup de tecnologia</span>
-                </p>
-
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                    Apaixonado por:
-                  </div>
-                  <div>Tecnologia</div>
-                </div>
-              </div>
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-md text-pretty">
+                Sou <span className="text-foreground">engenheiro de software</span>,
+                coordenador de tecnologia e educação, atuo desenvolvendo projetos em
+                uma startup de tecnologia.
+              </p>
             </div>
 
-            <div className="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-8 lg:mt-0">
-              <div className="space-y-4">
+            <div className="lg:col-span-2 flex flex-col justify-end space-y-8 mt-8 lg:mt-0">
+              {IS_AVAILABLE && <StatusPill label="Disponível para novos projetos" />}
+
+              <div className="border-l-2 border-primary/40 pl-4 space-y-2">
                 <div className="text-sm text-muted-foreground font-mono">
                   ATUALMENTE
                 </div>
-                <div className="space-y-2">
-                  <div className="text-foreground">
-                    Coordenador de Tecnologia e Educação
-                  </div>
-                  <div className="text-muted-foreground">
-                    @ Startup de Tecnologia
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    2022 — Presente
-                  </div>
+                <div className="text-foreground">
+                  Coordenador de Tecnologia e Educação
+                </div>
+                <div className="text-muted-foreground">@ 2V Educação</div>
+                <div className="text-xs text-muted-foreground tabular-nums">
+                  2022 até hoje
                 </div>
               </div>
 
               <div className="space-y-4">
-                <div className="text-sm text-muted-foreground font-mono">
-                  STACK
-                </div>
+                <div className="text-sm text-muted-foreground font-mono">STACK</div>
                 <div className="flex flex-wrap gap-2">
-                  {[
-                    "React",
-                    "TypeScript",
-                    "Node.js",
-                    "Next.js",
-                    "Educação em Tecnologia",
-                  ].map((skill) => (
+                  {STACK.map((skill, i) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
+                      style={{ transitionDelay: `${i * 40}ms` }}
+                      className="px-3 py-1 text-xs border border-border rounded-full
+                                 hover:border-muted-foreground/50 hover:-translate-y-0.5
+                                 transition-all duration-300 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                     >
                       {skill}
                     </span>
@@ -145,6 +108,14 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          <ChevronDown
+            aria-hidden="true"
+            className={cn(
+              "size-4 text-muted-foreground/40 mt-16 transition-opacity duration-500 motion-reduce:animate-none",
+              activeSection === "intro" ? "opacity-100 animate-bounce" : "opacity-0",
+            )}
+          />
         </header>
 
         <section
@@ -152,92 +123,58 @@ export default function Home() {
           ref={(el) => {
             sectionsRef.current[1] = el;
           }}
-          className="min-h-screen py-20 sm:py-32 opacity-0"
+          className="min-h-screen py-24 sm:py-32 opacity-0"
         >
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-3xl sm:text-4xl font-light">Minha Jornada</h2>
-              <div className="text-sm text-muted-foreground font-mono">
-                2022 — 2025
+              <div className="text-sm text-muted-foreground font-mono tabular-nums">
+                2022 a 2025
               </div>
             </div>
 
-            <div className="space-y-8 sm:space-y-12">
-              {[
-                {
-                  year: "2022",
-                  role: "Desenvolvedor Frontend Jr Autônomo",
-                  company: "Freelancer",
-                  description:
-                    "Atuei como desenvolvedor frontend júnior de forma autônoma, entregando projetos e experiências digitais sob demanda.",
-                  tech: ["HTML", "CSS", "JavaScript", "React"],
-                },
-                {
-                  year: "2023",
-                  role: "SEO e Tech Lead",
-                  company: "Agence Startech",
-                  description:
-                    "Liderança técnica em projetos de otimização de SEO e desenvolvimento de soluções digitais para clientes da agência.",
-                  tech: ["SEO", "React", "Next.js", "TypeScript"],
-                },
-                {
-                  year: "2024",
-                  role: "Gestor de Inteligência Artificial",
-                  company: "Startup de Tecnologia",
-                  description:
-                    "Responsável pela gestão de projetos de inteligência artificial e integração de soluções inovadoras em produtos digitais.",
-                  tech: ["Make", "GPTMAKER", "IA Generativa", "N8N"],
-                },
-                {
-                  year: "Recente",
-                  role: "Coordenador de Tecnologia e Educação",
-                  company: "Next Devs Academy",
-                  description:
-                    "Coordeno iniciativas de tecnologia e educação, unindo desenvolvimento de software e ensino para formar novos profissionais.",
-                  tech: [
-                    "React",
-                    "Next.js",
-                    "TypeScript",
-                    "Prisma",
-                    "Tailwind",
-                  ],
-                },
-              ].map((job, index) => (
-                <div
-                  key={index}
-                  className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
+            <ol className="relative space-y-8 sm:space-y-10 border-l border-border/60 pl-6 sm:pl-0 sm:border-l-0">
+              {journey.map((job) => (
+                <li
+                  key={job.year}
+                  className="group relative grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10
+                             py-6 sm:py-8 lg:pl-6 lg:border-l lg:border-border/60
+                             hover:bg-muted/20 transition-colors duration-300 rounded-md"
                 >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "absolute left-[-5px] top-8 size-2.5 rounded-full ring-4 ring-background",
+                      job.current ? "bg-primary" : "bg-muted-foreground/40",
+                    )}
+                  />
                   <div className="lg:col-span-2">
-                    <div className="text-xl sm:text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                    <div className="text-xl sm:text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-300 tabular-nums">
                       {job.year}
                     </div>
                   </div>
-
                   <div className="lg:col-span-6 space-y-3">
                     <div>
-                      <h3 className="text-lg sm:text-xl font-medium">
-                        {job.role}
-                      </h3>
+                      <h3 className="text-lg sm:text-xl font-medium">{job.role}</h3>
                       <div className="text-muted-foreground">{job.company}</div>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed max-w-lg">
+                    <p className="text-muted-foreground leading-relaxed max-w-lg text-pretty">
                       {job.description}
                     </p>
                   </div>
-
-                  <div className="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end mt-2 lg:mt-0">
+                  <div className="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end content-start mt-2 lg:mt-0">
                     {job.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-1 text-xs text-muted-foreground rounded group-hover:border-muted-foreground/50 transition-colors duration-500"
+                        className="px-2 py-1 text-xs text-muted-foreground border border-border/60 rounded-full"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </section>
 
@@ -246,84 +183,20 @@ export default function Home() {
           ref={(el) => {
             sectionsRef.current[2] = el;
           }}
-          className="min-h-screen py-20 sm:py-32 opacity-0"
+          className="min-h-screen py-24 sm:py-32 opacity-0"
         >
           <div className="space-y-12 sm:space-y-16">
-            <h2 className="text-3xl sm:text-4xl font-light">
-              Projetos Recentes
-            </h2>
+            <div className="space-y-2">
+              <div className="text-sm text-muted-foreground font-mono tracking-wider">
+                {projects.length} PROJETOS
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-light">Projetos Recentes</h2>
+            </div>
 
             <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
-              {[
-                {
-                  title: "Karposs",
-                  excerpt:
-                    "SaaS de gestão de projetos e tarefas para equipes. Multi-workspace, Kanban, Gantt, sprints, integrações com Google Calendar e GitHub, IA integrada e MCP server para agentes.",
-                  date: "2025 — Em andamento",
-                  stack: "Next.js 16, Firebase, Supabase, Stripe",
-                  url: "https://karposs.com.br",
-                },
-                {
-                  title: "BlueOrbital",
-                  excerpt:
-                    "Plataforma de saúde integrada. Pacientes registram refeições, treinos e métricas via WhatsApp; nutricionistas, personais e médicos acompanham em dashboard unificado com predições e alertas de IA.",
-                  date: "2026",
-                  stack: "Next.js 16, Prisma, Neon, Gemini",
-                  url: "https://blueorbital.com.br",
-                },
-                {
-                  title: "Yara",
-                  excerpt:
-                    "Psicóloga virtual 24/7 via WhatsApp. IA empática que acolhe, escuta e detecta situações de risco, com CRM de pacientes e gestão de sessões terapêuticas em tempo real.",
-                  date: "2026",
-                  stack: "Next.js 16, Prisma, Supabase Realtime, Evolution API",
-                  url: null,
-                },
-                {
-                  title: "Devogram",
-                  excerpt:
-                    "Rede social cristã mobile. Devocionais diários, sala de oração, feed inspirador e comunidade. App em React Native com landing page e lista de espera.",
-                  date: "2026",
-                  stack: "React Native, Expo, Next.js 16, Firebase",
-                  url: null,
-                },
-              ].map((project) => {
-                const content = (
-                  <div className="space-y-4">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs text-muted-foreground font-mono">
-                      <span>{project.date}</span>
-                      <span>{project.stack}</span>
-                    </div>
-
-                    <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-muted-foreground leading-relaxed">
-                      {project.excerpt}
-                    </p>
-                  </div>
-                );
-
-                const cardClass =
-                  "group block p-6 sm:p-8 border border-border rounded-lg transition-all duration-500";
-
-                return project.url ? (
-                  <Link
-                    key={project.title}
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${cardClass} hover:border-muted-foreground/50 hover:shadow-lg`}
-                  >
-                    {content}
-                  </Link>
-                ) : (
-                  <article key={project.title} className={cardClass}>
-                    {content}
-                  </article>
-                );
-              })}
+              {projects.map((project) => (
+                <ProjectCard key={project.title} project={project} />
+              ))}
             </div>
           </div>
         </section>
@@ -333,80 +206,53 @@ export default function Home() {
           ref={(el) => {
             sectionsRef.current[3] = el;
           }}
-          className="py-20 sm:py-32 opacity-0"
+          className="py-24 sm:py-32 opacity-0"
         >
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
             <div className="space-y-6 sm:space-y-8">
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src="/eu.png"
-                  alt="Guilherme Silva"
-                  className="size-20 border rounded-full"
+                  alt={`Foto de ${SITE_NAME}`}
+                  width={80}
+                  height={80}
+                  className="size-20 border border-border rounded-full object-cover"
                 />
-                <h2 className="text-2xl sm:text-4xl font-light">
-                  Conecte-se comigo
-                </h2>
+                <h2 className="text-2xl sm:text-4xl font-light">Conecte-se comigo</h2>
               </div>
 
-              <div className="space-y-6">
-                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  Você pode me acompanhar e acompanhar o processo de
-                  desenvolvimento dos nossos projetos nas minhas redes
-                </p>
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed text-pretty">
+                Você pode acompanhar o processo de desenvolvimento dos nossos projetos
+                nas minhas redes.
+              </p>
 
-                <div className="space-y-4">
-                  <Link
-                    href="mailto:guisilva.070104@gmail.com"
-                    className="group flex items-center gap-3 text-foreground hover:text-muted-foreground transition-colors duration-300"
-                  >
-                    <span className="text-base sm:text-lg">
-                      guisilva.070104@gmail.com
-                    </span>
-                    <svg
-                      className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
+              <Link
+                href={`mailto:${SITE_EMAIL}`}
+                className={cn(
+                  "group inline-flex items-center gap-3 px-5 py-3 border border-border rounded-lg",
+                  "hover:border-foreground/50 transition-colors duration-300",
+                  linkFocusRing,
+                )}
+              >
+                <span className="text-base sm:text-lg">{SITE_EMAIL}</span>
+                <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform duration-300 motion-reduce:transition-none" />
+              </Link>
             </div>
 
             <div className="space-y-6 sm:space-y-8">
-              <div className="text-sm text-muted-foreground font-mono">
-                REDES
-              </div>
-
+              <div className="text-sm text-muted-foreground font-mono">REDES</div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  {
-                    name: "GitHub",
-                    handle: "@guisilva10",
-                    url: "https://github.com/guisilva10",
-                  },
-                  {
-                    name: "LinkedIn",
-                    handle: "Guilherme Silva",
-                    url: "https://www.linkedin.com/in/guilhermesilvawww/",
-                  },
-                  {
-                    name: "Instagram",
-                    handle: "@owillemwww",
-                    url: "https://instagram.com/owillemwww",
-                  },
-                ].map((social) => (
+                {socials.map((social) => (
                   <Link
                     key={social.name}
                     href={social.url}
-                    className="group p-4 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      "group p-4 border border-border rounded-lg hover:border-muted-foreground/50",
+                      "hover:shadow-sm transition-all duration-300",
+                      linkFocusRing,
+                    )}
                   >
                     <div className="space-y-2">
                       <div className="text-foreground group-hover:text-muted-foreground transition-colors duration-300">
@@ -425,46 +271,18 @@ export default function Home() {
 
         <footer className="py-12 sm:py-16 border-t border-border">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
-            <div className="space-y-2">
-              <div className="text-sm text-muted-foreground">
-                © 2026 Guilherme Willem - Todos os direitos reservados
-              </div>
+            <div className="text-sm text-muted-foreground">
+              © 2026 {SITE_NAME} - Todos os direitos reservados
             </div>
 
             <div className="flex items-center gap-4">
-              <button
-                onClick={toggleTheme}
-                className="group p-3 rounded-lg border border-border hover:border-muted-foreground/50 transition-all duration-300"
-                aria-label="Toggle theme"
-              >
-                {isDark ? (
-                  <svg
-                    className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                  </svg>
-                )}
-              </button>
+              <ThemeToggle />
             </div>
           </div>
         </footer>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"></div>
+      <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
     </div>
   );
 }
