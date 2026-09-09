@@ -62,7 +62,9 @@ export default function Home() {
       <main className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
         <header
           id="intro"
-          ref={(el) => (sectionsRef.current[0] = el)}
+          ref={(el) => {
+            sectionsRef.current[0] = el;
+          }}
           className="min-h-screen flex items-center opacity-0"
         >
           <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
@@ -147,7 +149,9 @@ export default function Home() {
 
         <section
           id="work"
-          ref={(el) => (sectionsRef.current[1] = el)}
+          ref={(el) => {
+            sectionsRef.current[1] = el;
+          }}
           className="min-h-screen py-20 sm:py-32 opacity-0"
         >
           <div className="space-y-12 sm:space-y-16">
@@ -239,70 +243,96 @@ export default function Home() {
 
         <section
           id="thoughts"
-          ref={(el) => (sectionsRef.current[2] = el)}
+          ref={(el) => {
+            sectionsRef.current[2] = el;
+          }}
           className="min-h-screen py-20 sm:py-32 opacity-0"
         >
           <div className="space-y-12 sm:space-y-16">
-            <h2 className="text-3xl sm:text-4xl font-light">Ideias Recentes</h2>
+            <h2 className="text-3xl sm:text-4xl font-light">
+              Projetos Recentes
+            </h2>
 
             <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
               {[
                 {
-                  title: "Next Hub Academy",
+                  title: "Karposs",
                   excerpt:
-                    "Plataforma de ensino de tecnologia e educação, com o objetivo de formar novos profissionais.",
-                  date: "2024 — Em andamento",
-                  stack: "Next.js, Prisma, Tailwind, NextAuth",
+                    "SaaS de gestão de projetos e tarefas para equipes. Multi-workspace, Kanban, Gantt, sprints, integrações com Google Calendar e GitHub, IA integrada e MCP server para agentes.",
+                  date: "2025 — Em andamento",
+                  stack: "Next.js 16, Firebase, Supabase, Stripe",
+                  url: "https://karposs.com.br",
                 },
                 {
-                  title: "2VIBE",
+                  title: "BlueOrbital",
                   excerpt:
-                    "Plataforma de networking de projetos e profissionais com o objetivo de conectar recrutadores com desenvolvedores..",
+                    "Plataforma de saúde integrada. Pacientes registram refeições, treinos e métricas via WhatsApp; nutricionistas, personais e médicos acompanham em dashboard unificado com predições e alertas de IA.",
                   date: "2026",
-                  stack: "Next.js, NextAuth, ShadCN UI",
+                  stack: "Next.js 16, Prisma, Neon, Gemini",
+                  url: "https://blueorbital.com.br",
                 },
                 {
-                  title: "Next Trekker",
+                  title: "Yara",
                   excerpt:
-                    "Gerador de roadmaps de tecnologia integrado à Next Devs Academy.",
-                  date: "2025",
-                  stack: "React, Next.js 15",
+                    "Psicóloga virtual 24/7 via WhatsApp. IA empática que acolhe, escuta e detecta situações de risco, com CRM de pacientes e gestão de sessões terapêuticas em tempo real.",
+                  date: "2026",
+                  stack: "Next.js 16, Prisma, Supabase Realtime, Evolution API",
+                  url: null,
                 },
                 {
-                  title: "Magalee",
+                  title: "Devogram",
                   excerpt:
-                    "IA nutricionista que ajuda a manter uma alimentação saudável e treinos consistentes, com dashboard interativo para usuários e painel completo para nutricionistas.",
-                  date: "2025",
-                  stack: "N8N, Next.js 15, Google Sheets",
+                    "Rede social cristã mobile. Devocionais diários, sala de oração, feed inspirador e comunidade. App em React Native com landing page e lista de espera.",
+                  date: "2026",
+                  stack: "React Native, Expo, Next.js 16, Firebase",
+                  url: null,
                 },
-              ].map((post, index) => (
-                <article
-                  key={index}
-                  className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
-                >
+              ].map((project) => {
+                const content = (
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
-                      <span>{post.date}</span>
-                      <span>{post.stack}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs text-muted-foreground font-mono">
+                      <span>{project.date}</span>
+                      <span>{project.stack}</span>
                     </div>
 
                     <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
-                      {post.title}
+                      {project.title}
                     </h3>
 
                     <p className="text-muted-foreground leading-relaxed">
-                      {post.excerpt}
+                      {project.excerpt}
                     </p>
                   </div>
-                </article>
-              ))}
+                );
+
+                const cardClass =
+                  "group block p-6 sm:p-8 border border-border rounded-lg transition-all duration-500";
+
+                return project.url ? (
+                  <Link
+                    key={project.title}
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${cardClass} hover:border-muted-foreground/50 hover:shadow-lg`}
+                  >
+                    {content}
+                  </Link>
+                ) : (
+                  <article key={project.title} className={cardClass}>
+                    {content}
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
 
         <section
           id="connect"
-          ref={(el) => (sectionsRef.current[3] = el)}
+          ref={(el) => {
+            sectionsRef.current[3] = el;
+          }}
           className="py-20 sm:py-32 opacity-0"
         >
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
