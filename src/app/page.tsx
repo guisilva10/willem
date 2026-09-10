@@ -135,7 +135,7 @@ export default function Home() {
               </div>
             </div>
 
-            <ol className="relative space-y-8 sm:space-y-10 border-l border-border/60 pl-6 sm:pl-0 sm:border-l-0">
+            <ol className="relative space-y-8 sm:space-y-10 border-l border-border/60 pl-6 lg:pl-0 lg:border-l-0">
               {journey.map((job) => (
                 <li
                   key={job.year}
@@ -146,7 +146,7 @@ export default function Home() {
                   <span
                     aria-hidden="true"
                     className={cn(
-                      "absolute left-[-5px] top-8 size-2.5 rounded-full ring-4 ring-background",
+                      "absolute left-[-29px] lg:left-[-5px] top-8 size-2.5 rounded-full ring-4 ring-background",
                       job.current ? "bg-primary" : "bg-muted-foreground/40",
                     )}
                   />
