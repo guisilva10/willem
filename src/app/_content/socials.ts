@@ -1,7 +1,10 @@
+import { CV_FILE } from "@/app/_content/site";
+
 export type Social = {
   name: string;
   handle: string;
   url: string;
+  download?: string;
 };
 
 export const socials: Social[] = [
@@ -19,5 +22,11 @@ export const socials: Social[] = [
     name: "Instagram",
     handle: "@owillemwww",
     url: "https://instagram.com/owillemwww",
+  },
+  {
+    name: "Currículo",
+    handle: "Baixar PDF",
+    url: CV_FILE,
+    download: "Curriculo-Guilherme-Willem.pdf",
   },
 ];

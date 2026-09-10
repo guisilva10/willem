@@ -3,17 +3,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Download } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { ProjectCard } from "@/app/_components/project-card";
+import { ProjectCarousel } from "@/app/_components/project-carousel";
 import { SectionNav } from "@/app/_components/section-nav";
 import { StatusPill } from "@/app/_components/status-pill";
 import { ThemeToggle } from "@/app/_components/theme-toggle";
+import { ToolLogo } from "@/app/_components/tool-logo";
+import { AGENT_KIT_INTRO, agentKitPillars } from "@/app/_content/agent-kit";
 import { journey } from "@/app/_content/journey";
 import { projects } from "@/app/_content/projects";
 import { IS_AVAILABLE, SITE_EMAIL, SITE_NAME, STACK } from "@/app/_content/site";
 import { socials } from "@/app/_content/socials";
+import { tools } from "@/app/_content/tools";
 
 const linkFocusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
@@ -68,9 +71,8 @@ export default function Home() {
               </div>
 
               <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-md text-pretty">
-                Sou <span className="text-foreground">engenheiro de software</span>,
-                coordenador de tecnologia e educação, atuo desenvolvendo projetos em
-                uma startup de tecnologia.
+                Sou <span className="text-foreground">engenheiro de software AI-Native</span>,
+                construo produtos e agentes de IA em produção na 2V Educação.
               </p>
             </div>
 
@@ -82,7 +84,7 @@ export default function Home() {
                   ATUALMENTE
                 </div>
                 <div className="text-foreground">
-                  Coordenador de Tecnologia e Educação
+                  Engenheiro de Software AI-Native
                 </div>
                 <div className="text-muted-foreground">@ 2V Educação</div>
                 <div className="text-xs text-muted-foreground tabular-nums">
@@ -119,7 +121,7 @@ export default function Home() {
         </header>
 
         <section
-          id="work"
+          id="journey"
           ref={(el) => {
             sectionsRef.current[1] = el;
           }}
@@ -129,7 +131,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-3xl sm:text-4xl font-light">Minha Jornada</h2>
               <div className="text-sm text-muted-foreground font-mono tabular-nums">
-                2022 a 2025
+                2022 até hoje
               </div>
             </div>
 
@@ -179,7 +181,7 @@ export default function Home() {
         </section>
 
         <section
-          id="thoughts"
+          id="projects"
           ref={(el) => {
             sectionsRef.current[2] = el;
           }}
@@ -193,9 +195,74 @@ export default function Home() {
               <h2 className="text-3xl sm:text-4xl font-light">Projetos Recentes</h2>
             </div>
 
-            <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
-              {projects.map((project) => (
-                <ProjectCard key={project.title} project={project} />
+            <ProjectCarousel projects={projects} />
+          </div>
+        </section>
+
+        <section
+          id="agent-kit"
+          ref={(el) => {
+            sectionsRef.current[3] = el;
+          }}
+          className="py-24 sm:py-32 opacity-0"
+        >
+          <div className="space-y-12 sm:space-y-16">
+            <div className="space-y-2">
+              <div className="text-sm text-muted-foreground font-mono tracking-wider">
+                AGENT-KIT
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-light">Um framework que eu criei</h2>
+            </div>
+
+            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl text-pretty">
+              {AGENT_KIT_INTRO}
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
+              {agentKitPillars.map((pillar) => (
+                <div key={pillar.title} className="border-l-2 border-primary/40 pl-4 space-y-1.5">
+                  <h3 className="text-foreground font-medium">{pillar.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-pretty">
+                    {pillar.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="tools"
+          ref={(el) => {
+            sectionsRef.current[4] = el;
+          }}
+          className="py-24 sm:py-32 opacity-0"
+        >
+          <div className="space-y-12 sm:space-y-16">
+            <div className="space-y-2">
+              <div className="text-sm text-muted-foreground font-mono tracking-wider">
+                FERRAMENTAS
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-light">Como eu trabalho</h2>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {tools.map((tool) => (
+                <div
+                  key={tool.name}
+                  className="group p-4 sm:p-5 border border-border rounded-lg space-y-2"
+                >
+                  <ToolLogo
+                    name={tool.logo}
+                    className="h-6 w-auto text-muted-foreground group-hover:text-foreground transition-colors duration-300"
+                  />
+                  <div className="space-y-1.5">
+                    <div className="text-foreground font-medium">{tool.name}</div>
+                    <div className="text-sm text-muted-foreground leading-relaxed text-pretty">
+                      {tool.tagline}
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -204,7 +271,7 @@ export default function Home() {
         <section
           id="connect"
           ref={(el) => {
-            sectionsRef.current[3] = el;
+            sectionsRef.current[5] = el;
           }}
           className="py-24 sm:py-32 opacity-0"
         >
@@ -246,8 +313,9 @@ export default function Home() {
                   <Link
                     key={social.name}
                     href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download={social.download}
+                    target={social.download ? undefined : "_blank"}
+                    rel={social.download ? undefined : "noopener noreferrer"}
                     className={cn(
                       "group p-4 border border-border rounded-lg hover:border-muted-foreground/50",
                       "hover:shadow-sm transition-all duration-300",
@@ -258,8 +326,11 @@ export default function Home() {
                       <div className="text-foreground group-hover:text-muted-foreground transition-colors duration-300">
                         {social.name}
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         {social.handle}
+                        {social.download && (
+                          <Download className="size-4" aria-hidden="true" />
+                        )}
                       </div>
                     </div>
                   </Link>

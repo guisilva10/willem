@@ -4,8 +4,10 @@ import { cn } from "@/lib/utils";
 
 const SECTIONS = [
   { id: "intro", label: "Início" },
-  { id: "work", label: "Jornada" },
-  { id: "thoughts", label: "Projetos" },
+  { id: "journey", label: "Jornada" },
+  { id: "projects", label: "Projetos" },
+  { id: "agent-kit", label: "Agent-kit" },
+  { id: "tools", label: "Ferramentas" },
   { id: "connect", label: "Conexão" },
 ] as const;
 
