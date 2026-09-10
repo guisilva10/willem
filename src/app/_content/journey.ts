@@ -37,11 +37,11 @@ export const journey: JourneyEntry[] = [
   },
   {
     year: "Atual",
-    role: "Coordenador de Tecnologia e Educação",
+    role: "Engenheiro de Software AI-Native",
     company: "2V Educação",
     description:
-      "Coordeno iniciativas de tecnologia e educação, unindo desenvolvimento de software e ensino para formar novos profissionais.",
-    tech: ["React", "Next.js", "TypeScript", "Prisma", "Tailwind"],
+      "Desenvolvo produtos e agentes de IA em produção, unindo engenharia de software e educação para formar novos profissionais.",
+    tech: ["React", "Next.js", "TypeScript", "Prisma", "Claude Code"],
     current: true,
   },
 ];

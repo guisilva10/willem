@@ -8,18 +8,19 @@ import { BackgroundCanvas } from "./_components/background-canvas";
 import { SITE_NAME } from "./_content/site";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://willembio.vercel.app";
+const SITE_TITLE = `${SITE_NAME}: Engenheiro de Software AI-Native`;
 const SITE_DESCRIPTION =
-  "Portfolio de Guilherme Willem, engenheiro de software e coordenador de tecnologia e educação. Projetos, trajetória e contato.";
+  "Engenheiro de software AI-Native. Construo produtos e agentes de IA em produção na 2V Educação.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME}: Engenheiro de Software`,
+    default: SITE_TITLE,
     template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   openGraph: {
-    title: `${SITE_NAME}: Engenheiro de Software`,
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: SITE_NAME,
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: `${SITE_NAME}: Engenheiro de Software`,
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },
