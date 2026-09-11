@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import { ProjectCarousel } from "@/app/_components/project-carousel";
 import { SectionNav } from "@/app/_components/section-nav";
 import { StatusPill } from "@/app/_components/status-pill";
-import { ThemeToggle } from "@/app/_components/theme-toggle";
 import { ToolLogo } from "@/app/_components/tool-logo";
 import { AGENT_KIT_INTRO, agentKitPillars } from "@/app/_content/agent-kit";
 import { journey } from "@/app/_content/journey";
@@ -341,14 +340,8 @@ export default function Home() {
         </section>
 
         <footer className="py-12 sm:py-16 border-t border-border">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
-            <div className="text-sm text-muted-foreground">
-              © 2026 {SITE_NAME} - Todos os direitos reservados
-            </div>
-
-            <div className="flex items-center gap-4">
-              <ThemeToggle />
-            </div>
+          <div className="text-sm text-muted-foreground">
+            © 2026 {SITE_NAME} - Todos os direitos reservados
           </div>
         </footer>
       </main>

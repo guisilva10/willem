@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
 import SmoothScroll from "./_components/scroll-smooth";
@@ -47,17 +46,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className={geist.variable}>
+    <html lang="pt-BR" className={geist.variable}>
       <body className="antialiased bg-background text-foreground">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <BackgroundCanvas />
-          <SmoothScroll>{children}</SmoothScroll>
-        </ThemeProvider>
+        <BackgroundCanvas />
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
