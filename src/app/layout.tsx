@@ -6,7 +6,7 @@ import SmoothScroll from "./_components/scroll-smooth";
 import { BackgroundCanvas } from "./_components/background-canvas";
 import { SITE_NAME } from "./_content/site";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://willembio.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guilhermewww.vercel.app";
 const SITE_TITLE = `${SITE_NAME}: Engenheiro de Software AI-Native`;
 const SITE_DESCRIPTION =
   "Engenheiro de software AI-Native. Construo produtos e agentes de IA em produção na 2V Educação.";
@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },
+  other: {
+    "facebook-domain-verification": "5ubuz2p1bg43285a1w2n962yfoh5y3",
+  },
 };
 
 const geist = Geist({
