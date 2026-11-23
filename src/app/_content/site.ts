@@ -1,6 +1,7 @@
 export const SITE_NAME = "Guilherme Willem";
 export const SITE_EMAIL = "guisilva.070104@gmail.com";
 export const CV_FILE = "/cv-guilherme-willem.pdf";
+export const SITE_CNPJ = "61.316.669/0001-81";
 
 /** Flag fácil de desligar quando não houver disponibilidade para novos projetos. */
 export const IS_AVAILABLE = false;

@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },
+  other: {
+    "facebook-domain-verification": "5ubuz2p1bg43285a1w2n962yfoh5y3",
+  },
 };
 
 const geist = Geist({

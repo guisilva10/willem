@@ -13,7 +13,7 @@ import { ToolLogo } from "@/app/_components/tool-logo";
 import { AGENT_KIT_INTRO, agentKitPillars } from "@/app/_content/agent-kit";
 import { journey } from "@/app/_content/journey";
 import { projects } from "@/app/_content/projects";
-import { IS_AVAILABLE, SITE_EMAIL, SITE_NAME, STACK } from "@/app/_content/site";
+import { IS_AVAILABLE, SITE_CNPJ, SITE_EMAIL, SITE_NAME, STACK } from "@/app/_content/site";
 import { socials } from "@/app/_content/socials";
 import { tools } from "@/app/_content/tools";
 
@@ -341,7 +341,7 @@ export default function Home() {
 
         <footer className="py-12 sm:py-16 border-t border-border">
           <div className="text-sm text-muted-foreground">
-            © 2026 {SITE_NAME} - Todos os direitos reservados
+            © 2026 {SITE_NAME}. Todos os direitos reservados. CNPJ {SITE_CNPJ}
           </div>
         </footer>
       </main>
