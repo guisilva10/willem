@@ -6,7 +6,7 @@ import SmoothScroll from "./_components/scroll-smooth";
 import { BackgroundCanvas } from "./_components/background-canvas";
 import { SITE_NAME } from "./_content/site";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://willembio.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guilhermewww.vercel.app";
 const SITE_TITLE = `${SITE_NAME}: Engenheiro de Software AI-Native`;
 const SITE_DESCRIPTION =
   "Engenheiro de software AI-Native. Construo produtos e agentes de IA em produção na 2V Educação.";
